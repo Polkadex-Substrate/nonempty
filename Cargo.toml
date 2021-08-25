@@ -7,11 +7,13 @@ edition = "2018"
 license = "MIT"
 repository = "https://github.com/cloudhead/nonempty"
 
+
+[target.'cfg(not(target_env = "sgx"))'.dependencies]
+sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", features = ["backtrace"] }
+
 [dependencies]
-serde = { features = ["serde_derive"], optional = true, version = "1" }
+serde = { git = "https://github.com/mesalock-linux/serde-sgx.git", features = ["serde_derive"], optional = true }
 
 [features]
 serialize = ["serde"]
 
-[dev-dependencies]
-serde_json = "1"
